@@ -1,5 +1,4 @@
-# 🚀 Operating Systems – Worksheet 2  
-## 🎹 Inputs, Interrupts & Terminal System  
+# 🚀 Operating Systems – Worksheet 2 
 
 ---
 
