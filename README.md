@@ -6,19 +6,19 @@
 This project extends our simple OS kernel by adding **keyboard input**, **interrupt handling**, and a **mini terminal (shell)**.  
 We move from a framebuffer-only system to a kernel that interacts with hardware using:
 
-- 🖥️ I/O Ports  
-- ⚡ Programmable Interrupt Controller (PIC)  
-- 🧱 Interrupt Descriptor Table (IDT)  
-- ⌨️ Keyboard Interrupts  
-- 🔤 Scan-code → ASCII conversion  
-- 📦 Input buffer (`getc`, `readline`)  
-- 💻 A basic shell with commands  
+-  I/O Ports  
+-  Programmable Interrupt Controller (PIC)  
+-  Interrupt Descriptor Table (IDT)  
+-  Keyboard Interrupts  
+-  Scan-code → ASCII conversion  
+-  Input buffer (`getc`, `readline`)  
+-  A basic shell with commands  
 
 This README includes all required explanation and references to code files implemented in this worksheet.
 
 ---
 
-# 🧩 1. Understanding Hardware Interrupts  
+#  1. Understanding Hardware Interrupts  
 Interrupts allow external devices (like the keyboard) to signal the CPU.  
 When a key is pressed:
 
@@ -33,7 +33,7 @@ This mechanism builds our foundation for terminal input.
 
 ---
 
-# 💾 2. I/O Port Access (`inb`, `outb`)  
+#  2. I/O Port Access (`inb`, `outb`)  
 We use assembly routines to read/write bytes to I/O ports — an essential low-level operation.
 
 These functions allow:
@@ -43,7 +43,7 @@ These functions allow:
 
 ---
 
-# 🧱 3. Types (`types.h`)  
+#  3. Types (`types.h`)  
 To ensure portability, we use fixed-size data types:
 
 - `u8int` → 8-bit unsigned  
@@ -54,7 +54,7 @@ These types make it easy to define IDT entries and hardware structures.
 
 ---
 
-# ⚙️ 4. PIC Remapping  
+#  4. PIC Remapping  
 The Programmable Interrupt Controller originally maps IRQ0–IRQ15 to CPU interrupts 0–15, which conflict with CPU exceptions.
 
 To prevent this, we **remap the PIC** to:
@@ -68,7 +68,7 @@ We also unmask IRQ1 so keyboard input is enabled.
 
 ---
 
-# 📜 5. The Interrupt Descriptor Table (IDT)  
+#  5. The Interrupt Descriptor Table (IDT)  
 The IDT is a table where each entry stores:
 
 - Address of interrupt handler  
@@ -80,7 +80,7 @@ We configure entry **33** to point to our keyboard interrupt stub.
 
 ---
 
-# 🧵 6. Assembly Interrupt Stubs  
+#  6. Assembly Interrupt Stubs  
 These stubs do important work:
 
 - Save CPU registers  
@@ -93,7 +93,7 @@ They form the “bridge” between CPU hardware and C code.
 
 ---
 
-# 🎹 7. Keyboard Input System  
+#  7. Keyboard Input System  
 The keyboard sends *scan codes* for every key press or release.  
 Our driver:
 
@@ -107,7 +107,7 @@ Our driver:
 
 ---
 
-# 📥 8. Input Buffer (`getc`, `readline`)  
+#  8. Input Buffer (`getc`, `readline`)  
 We implement a **circular buffer**:
 
 - `buffer_push(c)` — Called from the interrupt handler
@@ -118,7 +118,7 @@ This layer decouples interrupt-level input from terminal-level processing.
 
 ---
 
-# 🖥️ 9. Terminal (Shell)  
+#  9. Terminal (Shell)  
 We implement a *very small* shell similar to Unix:
 
 Supported commands:
@@ -141,7 +141,7 @@ The shell supports:
 
 ---
 
-# 🏗️ 10. Build System (Makefile)  
+#  10. Build System (Makefile)  
 We include a Makefile that:
 
 - Compiles all `.c` and `.s` files
@@ -152,7 +152,7 @@ This allows simple one-command builds.
 
 ---
 
-# 🧠 11. How Everything Works Together  
+# 11. How Everything Works Together  
 Below is the flow from key press → terminal:
 
 1. User presses a key  
@@ -170,7 +170,7 @@ Below is the flow from key press → terminal:
 
 ---
 
-# 🧪 12. Testing Instructions
+# 12. Testing Instructions
 
 To test your OS in QEMU:
 
@@ -180,7 +180,7 @@ Everything should work through hardware interrupts.
 
 ---
 
-# 🏁 13. Final Notes  
+# 13. Final Notes  
 This project introduces you to **real OS internals**, such as:
 
 - Hardware interrupt management  
