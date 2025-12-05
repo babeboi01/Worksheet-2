@@ -1,6 +1,5 @@
 # 🚀 Operating Systems – Worksheet 2  
 ## 🎹 Inputs, Interrupts & Terminal System  
-*A fully detailed, professionally written README with emojis*
 
 ---
 
