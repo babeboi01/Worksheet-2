@@ -176,7 +176,7 @@ Below is the flow from key press → terminal:
 
 To test your OS in QEMU:
 
-![alt text](<Screenshot 2025-12-05 193547.png>)
+![alt text](output.png)
 
 Everything should work through hardware interrupts.
 
