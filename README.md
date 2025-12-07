@@ -424,7 +424,7 @@ To verify that the full keyboard → interrupt → buffer → terminal pipeline 
 Run the build system:
 ```
 make
-```
+
 ### 🚀 2. Run the OS in QEMU
 Launch your OS in a virtual environment:
 ![alt text](output.png)
@@ -452,7 +452,6 @@ myos> help
 myos> echo hello world
 myos> clear
 myos> somethingunknown
-```
 
 Expected behaviors:
 - Commands execute correctly
