@@ -318,7 +318,9 @@ void fb_write_char(char c) {
 
 # 🧩 kernel/interrupts.c
 ```c
-#in# 🧩 kernel/interrupt_asm.s
+#include "interrupts.h"
+#include "pic.h"
+#include "terminal.h"# 
 
 **Description:**
 A small assembly helper that loads the IDT pointer using the CPU instruction `lidt`. This is rede "io.h"
@@ -344,6 +346,29 @@ void idt_init() {
     idt_ptr.limit = sizeof(idt) - 1;
     idt_load((unsigned int)&idt_ptr);
 }
+```
+🧩 kernel/interrupt_asm.s
+```asm
+global common_interrupt_handler
+extern interrupt_handler
+
+common_interrupt_handler:
+    pusha
+    push ds
+    push es
+    push fs
+    push gs
+
+    push dword [esp+44] ; interrupt number
+    call interrupt_handler
+
+    pop gs
+    pop fs
+    pop es
+    pop ds
+    popa
+    add esp, 4
+    iretd
 ```
 
 ---
