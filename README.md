@@ -416,6 +416,8 @@ void keyboard_isr() {
     unsigned char sc = keyboard_read_scancode();
     char c = scancode_to_char(sc);
 
+```
+
 ## 🧪 Testing & Validation
 
 To verify that the full keyboard → interrupt → buffer → terminal pipeline works correctly, follow these steps:
@@ -424,11 +426,12 @@ To verify that the full keyboard → interrupt → buffer → terminal pipeline 
 Run the build system:
 ```
 make
+```
 
 ### 🚀 2. Run the OS in QEMU
 Launch your OS in a virtual environment:
-![alt text](output.png)
 
+![alt text](output.png)
 
 ### 🎹 3. Test Keyboard Input
 Press various keys to verify:
@@ -452,6 +455,7 @@ myos> help
 myos> echo hello world
 myos> clear
 myos> somethingunknown
+```
 
 Expected behaviors:
 - Commands execute correctly
